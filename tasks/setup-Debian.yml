@@ -25,6 +25,13 @@
     state: present
   when: ansible_distribution == 'Ubuntu' or ansible_distribution_version is version('20.04', '>=')
 
+
+- name: Modify package name if on Ubuntu >= 21.10.
+  vars:
+    docker_package: "{{ docker_package }}-cli"
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution_version is version('21.10', '>=')
+
+
 - name: Add Docker apt key.
   apt_key:
     url: "{{ docker_apt_gpg_key }}"
