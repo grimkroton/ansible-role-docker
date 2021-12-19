@@ -27,7 +27,7 @@
 
 
 - name: Modify package name if on Ubuntu >= 21.10.
-  vars:
+  set_fact:
     docker_package: "{{ docker_package }}-cli"
   when: ansible_distribution == 'Ubuntu' or ansible_distribution_version is version('21.10', '>=')
 
